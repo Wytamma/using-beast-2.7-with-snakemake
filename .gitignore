@@ -1,0 +1,4 @@
+.snakemake
+env
+SIR.traj
+beast.version

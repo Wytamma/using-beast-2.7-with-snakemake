@@ -1,0 +1,12 @@
+rule beast_version:
+    conda: "envs/beast.yaml"
+    output: "beast.version"
+    shell: "beast -version > {output}"
+
+rule run_remaster_sir:
+    conda: "envs/beast.yaml"
+    input: 
+        beast_version = "beast.version",
+        sir_xml_file = "SIR.xml"
+    output: "SIR.traj"
+    shell: "beast {input.sir_xml_file}"
