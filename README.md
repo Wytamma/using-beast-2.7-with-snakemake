@@ -6,4 +6,4 @@ snakemake --cores 1 --use-conda -R run_remaster_sir
 
 The magic happens in `workflow/envs/beast.post-deploy.sh`.
 
-See the blog for more details -> 
+See the blog for more details -> [https://blog.wytamma.com/blog/beast-2.7-snakemake/](https://blog.wytamma.com/blog/beast-2.7-snakemake/)
