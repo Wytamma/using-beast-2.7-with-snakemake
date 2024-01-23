@@ -60,9 +60,8 @@ for package in "${PACKAGES[@]}"; do
     packagemanager -add "$package"
 done
 
-# Ensure beagle is available
 # Activate script: Set up LD_LIBRARY_PATH for beagle
-echo -e 'export LD_LIBRARY_PATH_CONDA_BACKUP="${LD_LIBRARY_PATH:-}"\nexport LD_LIBRARY_PATH=$CONDA_PREFIX/lib' > $CONDA_PREFIX/etc/conda/activate.d/beagle_activate.sh
+echo -e 'export LD_LIBRARY_PATH_CONDA_BACKUP="${LD_LIBRARY_PATH:-}"\nexport LD_LIBRARY_PATH=$CONDA_PREFIX/lib:${LD_LIBRARY_PATH:-}' > "$CONDA_PREFIX/etc/conda/activate.d/beagle_activate.sh"
 
 # Deactivate script: Restore original LD_LIBRARY_PATH and clean up
-echo -e 'export LD_LIBRARY_PATH=${LD_LIBRARY_PATH_CONDA_BACKUP:-}\nunset LD_LIBRARY_PATH_CONDA_BACKUP\n[ -z $LD_LIBRARY_PATH ] && unset LD_LIBRARY_PATH' > $CONDA_PREFIX/etc/conda/deactivate.d/beagle_deactivate.sh
+echo -e 'export LD_LIBRARY_PATH=${LD_LIBRARY_PATH_CONDA_BACKUP:-}\nunset LD_LIBRARY_PATH_CONDA_BACKUP\n[ -z "$LD_LIBRARY_PATH" ] && unset LD_LIBRARY_PATH' > "$CONDA_PREFIX/etc/conda/deactivate.d/beagle_deactivate.sh"
